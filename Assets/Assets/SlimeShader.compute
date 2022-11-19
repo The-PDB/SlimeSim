@@ -18,6 +18,7 @@ float marchingError;
 struct Agent {
 	float2 pos;
 	float angle;
+	// float4 type;
 };
 
 RWTexture2D<float4> TrailMap;
@@ -51,8 +52,8 @@ float sense(Agent agent, float angle)
 
 			if (pos.x >= 0 && pos.x < width && pos.y >= 0 && pos.y < height)
 			{
+				// sum += dot(agent.type, value);
 				sum += value.x;
-				//sum = normalize(cross(agent.type, value));
 			}
 		}
 	}
@@ -116,6 +117,13 @@ float diffuseSpeed;
 void Postprocess(uint3 id : SV_DispatchThreadID)
 {
 	float4 originalValue = TrailMap[id.xy];
+	// if(originalValue.x == 1.0f) {
+	// 	originalValue = float4(1.0f, 0.24f, 0.25f, 0.5f);
+	// } else if(originalValue.y == 1.0f) {
+	// 	originalValue = float4(0.8f, 1.0f, 0.4f, 0.5f);
+	// } else if(originalValue.z == 1.0f) {
+	// 	originalValue = float4(0.04f, 0.25f, 0.45f, 0.5f);
+	// }
 
 	float3x3 gaussianKernel =
 	{

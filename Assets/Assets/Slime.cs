@@ -36,6 +36,7 @@ public class Slime : MonoBehaviour {
     public struct Agent {
         public Vector2 position;
         public float angle;
+        // public Vector4 type;
     }
 
     private Agent[] agents;
@@ -59,6 +60,10 @@ public class Slime : MonoBehaviour {
 
             agents[i].position = new Vector2(width/2 + x, height/2 + y);
             agents[i].angle = angle + Mathf.PI;
+
+            // Vector4 type = Vector4.zero;
+            // type[Random.Range(0, 3)] = 1;
+            // agents[i].type = type;
         }
 
         agentsBuffer = new ComputeBuffer(numAgents, sizeof(float) * 3);

@@ -228,7 +228,7 @@ MonoBehaviour:
   diffuseSpeed: 10
   evaporateSpeed: 1
   senseRange: 3
-  sensorLength: 5
-  sensorAngleSpacing: 5
+  sensorLength: 30
+  sensorAngleSpacing: 60
   turnSpeed: 50
   marchingError: 0.1
