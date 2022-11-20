@@ -1,13 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class Slime : MonoBehaviour {
 
     public ComputeShader shader;
+
+    public TMP_InputField agentField;
+
+    public Slider rangeSlider;
+    public Slider lengthSlider;
+    public Slider angleSlider;
+
+    public TextMeshProUGUI rangeText;
+    public TextMeshProUGUI lengthText;
+    public TextMeshProUGUI angleText;
+
     [SerializeField]
     private int width = 1920, height = 1080;
-    [SerializeField]
+    // [SerializeField]
     private int numAgents = 1000000;
     [SerializeField]
     private float moveSpeed = 50f;
@@ -71,6 +84,15 @@ public class Slime : MonoBehaviour {
     }
 
     void Update() {
+        if(agentField.text != "") numAgents = int.Parse(agentField.text);
+        senseRange = (int)rangeSlider.value;
+        sensorLength = lengthSlider.value;
+        sensorAngleSpacing = angleSlider.value;
+
+        rangeText.text = ""+senseRange;
+        lengthText.text = ""+sensorLength;
+        angleText.text = ""+sensorAngleSpacing;
+
         shader.SetTexture(kernelIndices["Update"], "TrailMap", trailMap);
 
         shader.SetInt("width", width);
